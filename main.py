@@ -23,3 +23,10 @@ nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=500, font_si
 plt.title("Граф по модели Эрдёша-Реньи")
 plt.savefig("my_graph.png", format='png')
 plt.show()
+# Проверка, что прим многократной геренрации будет +- тоже, что в теории
+num_simulations = 100
+average_degrees = []
+for _ in range(num_simulations):
+    G = nx.erdos_renyi_graph(num_nodes, edge_probability)
+    average_degrees.append(np.mean([deg for _, deg in G.degree()]))
+print(f"Средняя степень (по симуляциям): {np.mean(average_degrees):.2f}")
